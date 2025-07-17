@@ -36,28 +36,3 @@ impl Pallet {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn system_pallet_work() {
-        // Arrange
-        // create system pallet
-        let mut system = Pallet::new();
-
-        // Act
-        // increase current block number
-        system.inc_block_number();
-        // increase the nonce of a user - `Temi`
-        system.inc_nonce(&"Temi".to_string());
-
-        // Assert
-        // Check the block number (i.e. 1)
-        assert_eq!(system.block_number(), 1);
-        // Check the nonce of Temi (i.e. 1)
-        assert_eq!(system.nonce.get("Temi"), Some(&1));
-        // Check the nonce of Faithful (i.e. 0)
-        assert_eq!(system.nonce.get("Faithful"), None);
-    }
-}
